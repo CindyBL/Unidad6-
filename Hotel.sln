@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.GUI.Administracion", "Hotel.GUI.Administracion\Hotel.GUI.Administracion.csproj", "{47D6EA3F-6713-4705-9162-345E7A272F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.GUI.Registros", "Hotel.GUI.Registros\Hotel.GUI.Registros.csproj", "{272F71B2-6C9F-4507-94B9-C82C82AB289B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.GUI.Clientes", "Hotel.GUI.Clientes\Hotel.GUI.Clientes.csproj", "{6D19E5F1-F7B4-4F7C-A0A3-577607188837}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47D6EA3F-6713-4705-9162-345E7A272F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D6EA3F-6713-4705-9162-345E7A272F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D6EA3F-6713-4705-9162-345E7A272F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D6EA3F-6713-4705-9162-345E7A272F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272F71B2-6C9F-4507-94B9-C82C82AB289B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272F71B2-6C9F-4507-94B9-C82C82AB289B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272F71B2-6C9F-4507-94B9-C82C82AB289B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272F71B2-6C9F-4507-94B9-C82C82AB289B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D19E5F1-F7B4-4F7C-A0A3-577607188837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D19E5F1-F7B4-4F7C-A0A3-577607188837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D19E5F1-F7B4-4F7C-A0A3-577607188837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D19E5F1-F7B4-4F7C-A0A3-577607188837}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

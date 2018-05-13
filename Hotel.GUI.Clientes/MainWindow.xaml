@@ -1,0 +1,53 @@
+﻿<Window x:Class="Hotel.GUI.Clientes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.GUI.Clientes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="415.003" Width="740.066">
+    <Grid Margin="0,0,2,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="Imagenes/Hotel3.jpg"/>
+        </Grid.Background>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <WrapPanel >
+                <Image Height="111" Width="123" Margin="30" Source="/Imagenes/Usuario3.png" >
+                </Image>
+            </WrapPanel>
+            <WrapPanel Orientation="Vertical" Height="160" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Height="30" Width="100" Foreground="White" FontSize="16" FontWeight="Bold" Content="Usuario:" Background="Black"/>
+                    <ComboBox  x:Name="cmbUsuario" Height="23" Width="220" FontSize="16" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Height="30" Width="100" Foreground="White" FontSize="16" FontWeight="Bold" Content="Contraseña:" Background="#FF0C0B0B"/>
+                    <PasswordBox x:Name="pasword" Height="23" Width="220"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <Button Height="35" Width="120" x:Name="btnIniciarAplicacion"  Margin="20" Background="White" Foreground="#FFFDFDFD">
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="16" Foreground="#FFAC2E2E" FontWeight="Bold" Content="Entrar" Background="{x:Null}"/>
+                            <Image Source="/Imagenes/Entrar.jpg" Width="25"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="35" Width="120" x:Name="btnCancelarAplicacion" Background="White" Foreground="#FFFDFDFD">
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="16" Foreground="#FFC92828" FontWeight="Bold" Content="Cancelar"/>
+                            <Image Source="/Imagenes/cancelar.png" Width="25"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </WrapPanel>
+            <StackPanel Orientation="Vertical" Width="173">
+                <Button Height="35" x:Name="btnAgregarUsuario" Background="#FF3A3333" Foreground="#FFFDFDFD" Margin="10,0,26,0" Click="btnAgregarUsuario_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontSize="16" Foreground="#FFF5ECEC" FontWeight="Bold" Width="98" Content="Registrarse" RenderTransformOrigin="0.344,0.536"/>
+                        <Image Source="/Imagenes/AddUsuario.png" Width="25"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </WrapPanel>
+    </Grid>
+</Window>

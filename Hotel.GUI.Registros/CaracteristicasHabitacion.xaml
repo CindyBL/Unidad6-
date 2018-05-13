@@ -1,0 +1,70 @@
+﻿<Window x:Class="Hotel.GUI.Registros.CaracteristicasHabitacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.GUI.Registros"
+        mc:Ignorable="d"
+        Title="CaracteristicasHabitacion" Height="738" Width="830">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Imagenes/fondo2.jpg"/>
+        </Grid.Background>
+        <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Width="208" FontWeight="Bold" FontSize="21.333">Tipo de habitacion:</TextBlock>
+                <ComboBox x:Name="txbTipoHabitacion" Width="200" FontSize="21.333" ></ComboBox>
+            </WrapPanel>
+            <StackPanel Height="13"></StackPanel>
+            <WrapPanel Orientation="Horizontal">
+                <TextBlock Width="135" FontWeight="Bold" FontSize="21.333">N° de camas:</TextBlock>
+                <ComboBox x:Name="txbNCamas" Width="123" FontSize="21.333" ></ComboBox>
+                <WrapPanel Width="27"></WrapPanel>
+                <WrapPanel>
+                    <TextBlock Width="135" FontWeight="Bold" FontSize="21.333">N° de baños:</TextBlock>
+                    <ComboBox x:Name="txbNBaños" Width="123" FontSize="21.333" ></ComboBox>
+                </WrapPanel>
+            </WrapPanel>
+            <WrapPanel Height="17"></WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button x:Name="btnNuevo" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Imagenes/nuevo.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnEditar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="50" Height="45">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Imagenes/editar.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnGuardar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="47">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Imagenes/guardar.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnEliminar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="49">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Imagenes/eliminar.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnCancelar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="54">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Imagenes/cancelar1.png"/>
+                    </Button.Background>
+                </Button>
+            </WrapPanel>
+            <WrapPanel Height="23"></WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <DataGrid x:Name="dtgTipoHabitacion" Width="328" Height="242"></DataGrid>
+            </WrapPanel>
+            <WrapPanel Height="26"></WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button x:Name="btnRegresar" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="58" Width="132" Click="btnRegresar_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Imagenes/regresar.png"/>
+                    </Button.Background>
+                </Button>
+            </WrapPanel>
+        </WrapPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="Hotel.GUI.Administracion.Huespedes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.GUI.Administracion"
+        mc:Ignorable="d"
+        Title="Huespedes" Height="738" Width="830">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Imagenes/fondo2.jpg"/>
+        </Grid.Background>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <DataGrid Height="335" Width="376"></DataGrid>
+        </WrapPanel>
+    </Grid>
+</Window>
