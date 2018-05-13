@@ -1,0 +1,34 @@
+﻿<Window x:Class="Hotel.GUI.Clientes.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.GUI.Clientes"
+        mc:Ignorable="d"
+        Title="Menu" Height="600" Width="1000">
+    <Window.Background>
+        <ImageBrush/>
+    </Window.Background>
+    <TabControl>
+        <TabControl.Background>
+            <ImageBrush ImageSource="Imagenes/fondo2.jpg"/>
+        </TabControl.Background>
+        <TabItem Header="Inicio" Margin="-4,-5,0,0">
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Button x:Name="Regresar" Height="62" Width="126" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Regresar_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Imagenes/regresar.png"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+            </WrapPanel>
+        </TabItem>
+        <TabItem Header="Habitaciones" Margin="0,-5,-4,0">
+
+        </TabItem>
+        <TabItem Header="Servicios" Margin="4,-4,-8,0">
+
+        </TabItem>
+    </TabControl>
+</Window>

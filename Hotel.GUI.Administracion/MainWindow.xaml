@@ -28,7 +28,7 @@
                     <PasswordBox x:Name="pasword" Height="23" Width="220"></PasswordBox>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
-                    <Button Height="35" Width="120" x:Name="btnIniciarAplicacion"  Margin="20" Background="#FFF9F5F5" Foreground="#FFFDFDFD">
+                    <Button Height="35" Width="120" x:Name="btnIniciarAplicacion"  Margin="20" Background="#FFF9F5F5" Foreground="#FFFDFDFD" Click="btnIniciarAplicacion_Click">
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="16" Foreground="#FFC52828" FontWeight="Bold">Entrar</Label>
                             <Image Source="/Imagenes/Entrar.jpg" Width="25"></Image>

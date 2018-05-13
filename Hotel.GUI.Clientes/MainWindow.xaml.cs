@@ -31,5 +31,12 @@ namespace Hotel.GUI.Clientes
             ir.Show();
             this.Close();
         }
+
+        private void btnIniciarAplicacion_Click(object sender, RoutedEventArgs e)
+        {
+            Menu ir = new Menu();
+            ir.Show();
+            this.Close();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Hotel.GUI.Registros
 
         private void btnIniciarAplicacion_Click(object sender, RoutedEventArgs e)
         {
-            Menu ir = new Menu();
+            MenuO ir = new MenuO();
             ir.Show();
             this.Close();
         }
