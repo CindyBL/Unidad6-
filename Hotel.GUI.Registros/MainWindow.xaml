@@ -25,7 +25,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Height="30" Width="100" Foreground="White" FontSize="16" FontWeight="Bold" Background="#FF060606">Contraseña:</Label>
-                    <PasswordBox x:Name="pasword" Height="23" Width="220"></PasswordBox>
+                    <PasswordBox x:Name="Contraseña" Height="23" Width="220"></PasswordBox>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                     <Button Height="35" Width="120" x:Name="btnIniciarAplicacion"  Margin="20" Background="White" Foreground="#FFFDFDFD" Click="btnIniciarAplicacion_Click">
