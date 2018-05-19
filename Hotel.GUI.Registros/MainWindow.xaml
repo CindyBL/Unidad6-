@@ -9,6 +9,7 @@
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Imagenes/Hotel2.jpg"/>
+            
         </Grid.Background>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <WrapPanel >
@@ -21,11 +22,11 @@
             <WrapPanel Orientation="Vertical" Height="160" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Height="30" Width="100" Foreground="White" FontSize="16" FontWeight="Bold" Background="#FF080707">Usuario:</Label>
-                    <ComboBox  x:Name="cmbUsuario" Height="23" Width="220" FontSize="16" ></ComboBox>
+                    <ComboBox  x:Name="cmbUsuario" Height="27" Width="220" FontSize="16" ></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Height="30" Width="100" Foreground="White" FontSize="16" FontWeight="Bold" Background="#FF060606">Contraseña:</Label>
-                    <PasswordBox x:Name="Contraseña" Height="23" Width="220"></PasswordBox>
+                    <PasswordBox x:Name="Contraseña" Height="26" Width="220"></PasswordBox>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                     <Button Height="35" Width="120" x:Name="btnIniciarAplicacion"  Margin="20" Background="White" Foreground="#FFFDFDFD" Click="btnIniciarAplicacion_Click">
@@ -42,6 +43,9 @@
                     </Button>
                 </StackPanel>
             </WrapPanel>
+            <StackPanel>
+                <MediaElement Source="Musica/1.mp3" x:Name="Musica" LoadedBehavior="Play"></MediaElement>
+            </StackPanel>
         </WrapPanel>
     </Grid>
 </Window>

@@ -222,12 +222,12 @@
                 <StackPanel Height="20"></StackPanel>
                 <WrapPanel Orientation="Horizontal">
                     <TextBlock Width="136" FontWeight="Bold" FontSize="21.333"><Run Text="Contraseña"/><Run Text=":"/></TextBlock>
-                    <TextBox x:Name="txbContraseña" Width="200" FontSize="21.333" Height="37" ></TextBox>
+                    <PasswordBox x:Name="txbContraseña" Width="200" FontSize="21.333" Height="37" ></PasswordBox>
                 </WrapPanel>
                 <StackPanel Height="21"></StackPanel>
                 <WrapPanel Orientation="Horizontal">
                     <TextBlock Width="136" FontWeight="Bold" FontSize="21.333"><Run Text="Con"/><Run Text="firmar"/><Run Text=":"/></TextBlock>
-                    <TextBox x:Name="txbContraseñaR" Width="200" FontSize="21.333" Height="37" ></TextBox>
+                    <PasswordBox x:Name="txbContraseñaR" Width="200" FontSize="21.333" Height="37" ></PasswordBox>
                 </WrapPanel>
                 <WrapPanel Height="17"></WrapPanel>
                 <WrapPanel HorizontalAlignment="Center">

@@ -202,6 +202,7 @@
   <ItemGroup>
     <Resource Include="1-ConvertImage.ico" />
     <SplashScreen Include="Imagenes\splash.gif" />
+    <Content Include="Musica\1.mp3" />
     <Content Include="Videos\bienbenida.mp4" />
   </ItemGroup>
   <ItemGroup>
@@ -758,5 +759,6 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
