@@ -32,10 +32,16 @@
         <TabItem Header="Tipo de habitación" Margin="13,-2,-48,0">
             <Grid >
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <WrapPanel Orientation="Horizontal">
+                    <WrapPanel Orientation="Horizontal" Height="39">
                         <TextBlock Width="208" FontWeight="Bold" FontSize="21.333">Tipo de habitacion:</TextBlock>
-                        <TextBox x:Name="txbTipoHabitacion" Width="200" FontSize="21.333" ></TextBox>
+                        <TextBox x:Name="txbTipoHabitacion" Width="200" FontSize="21.333" Height="34" ></TextBox>
                     </WrapPanel>
+                    <StackPanel Height="46">
+                        <WrapPanel>
+                        <TextBlock FontSize="20" Height="42" FontWeight="Bold">Costo por Habitacion:</TextBlock>
+                        <TextBox x:Name="txbCostoHabitacion" Width="203" FontSize="18" Height="34"></TextBox>
+                        </WrapPanel>
+                    </StackPanel>
                     <WrapPanel Height="17"></WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
                         <Button x:Name="btnNuevo" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE" Click="btnNuevo_Click">
@@ -65,8 +71,37 @@
                         </Button>
                     </WrapPanel>
                     <WrapPanel Height="23"></WrapPanel>
+                    <StackPanel Height="60">
+                        <WrapPanel Height="57">
+                            <Image x:Name="imgFoto" Width="84" Height="62" ></Image>
+                            <Button x:Name="btnCargarFoto" Height="36" Width="106" FontSize="16" FontWeight="Bold" Click="btnCargarFoto_Click">Cargar Foto</Button>
+                        </WrapPanel>
+                    </StackPanel>
+                    <StackPanel Height="26"></StackPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <DataGrid x:Name="dtgTipoHabitacion" Width="328" Height="242"></DataGrid>
+                        <ListView x:Name="lsvTipoHabitacion" Width="328" Height="242">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width=".25*"></ColumnDefinition>
+                                            <ColumnDefinition Width=".75*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{Binding Fotografia}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Height="60" Width="60"/>
+                                        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                            <TextBlock Text="[" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding NombtreTipoH}" FontWeight="Bold"/>
+                                            <TextBlock Text="]" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <Label Grid.Column="1" Grid.Row="1" Content="{Binding CostoHabitacion}"></Label>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate> 
+                        </ListView>
                     </WrapPanel>
                     <WrapPanel Height="26"></WrapPanel>
                 </WrapPanel>
@@ -179,6 +214,14 @@
                     <TextBox x:Name="txbDescripcion" Width="200" FontSize="21.333" Height="37" ></TextBox>
                 </WrapPanel>
                 <WrapPanel Height="17"></WrapPanel>
+                <WrapPanel Height="23"></WrapPanel>
+                <StackPanel Height="60">
+                    <WrapPanel Height="57">
+                        <Image x:Name="imgFotoServicio" Width="84" Height="62" ></Image>
+                        <Button x:Name="btnCargarFotoServicio" Height="36" Width="106" FontSize="16" FontWeight="Bold" Click="btnCargarFotoServicio_Click" >Cargar Foto</Button>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Height="26"></StackPanel>
                 <WrapPanel HorizontalAlignment="Center">
                     <Button x:Name="btnNuevo3" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE" Click="btnNuevo3_Click">
                         <Button.Background>
@@ -208,7 +251,29 @@
                 </WrapPanel>
                 <WrapPanel Height="23"></WrapPanel>
                 <WrapPanel HorizontalAlignment="Center">
-                    <DataGrid x:Name="dtgOtrosServicios" Width="328" Height="242"></DataGrid>
+                    <ListView x:Name="dtgOtrosServicios" Width="328" Height="242">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".25*"></ColumnDefinition>
+                                        <ColumnDefinition Width=".75*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding FotografiaServicio}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Height="60" Width="60"/>
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                        <TextBlock Text="[" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding NombreServicio}" FontWeight="Bold"/>
+                                        <TextBlock Text="]" FontWeight="Bold"/>
+                                    </StackPanel>
+                                    <Label Grid.Column="1" Grid.Row="1" Content="{Binding Descripcion}"></Label>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </WrapPanel>
                 <WrapPanel Height="26"></WrapPanel>
             </WrapPanel>

@@ -14,9 +14,12 @@
             <ImageBrush ImageSource="Imagenes/fondo2.jpg"/>
         </TabControl.Background>
         <TabItem Header="Inicio" Margin="-4,-5,0,0">
-            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel>
-                    <Button x:Name="Regresar" Height="62" Width="126" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Regresar_Click">
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" Height="439" Margin="2,0">
+                <WrapPanel Height="382">
+                    <MediaElement Source="Videos\bienbenida.mp4" x:Name="mePlayer"  Margin="282,56,190,102" LoadedBehavior="Play" UnloadedBehavior="Stop" Stretch="Fill" />
+                </WrapPanel>
+                <StackPanel RenderTransformOrigin="0.5,0.5" Width="622" Height="36">
+                    <Button Height="36" Margin="181,0,299,0" x:Name="Regresar" Click="Regresar_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Imagenes/regresar.png"/>
                         </Button.Background>
@@ -25,10 +28,78 @@
             </WrapPanel>
         </TabItem>
         <TabItem Header="Habitaciones" Margin="0,-5,-4,0">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <WrapPanel>
+                    <ListView Height="392" Width="446" x:Name="lsvHabitaciones">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="400">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".25*"></ColumnDefinition>
+                                        <ColumnDefinition Width=".75*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
 
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                        <TextBlock Text="[" FontWeight="Bold"/>
+                                        <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="18" Text="{Binding NombtreTipoH}"/>
+
+                                        <TextBlock Text="]" FontWeight="Bold"/>
+                                    </StackPanel>
+
+                                    <Expander Grid.Column="1" Grid.Row="1">
+                                        <ListView>
+
+                                            <Image Source="{Binding Fotografia}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Height="60" Width="60"/>
+                                            <TextBlock Text="Costo:" FontWeight="Bold"></TextBlock>
+                                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding CostoHabitacion}"></TextBlock>
+                                        </ListView>
+                                    </Expander>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </WrapPanel>
+            </WrapPanel>
         </TabItem>
         <TabItem Header="Servicios" Margin="4,-4,-8,0">
-
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <WrapPanel>
+                    <ListView x:Name="lsvServicios" Height="325" Width="360">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".25*"></ColumnDefinition>
+                                        <ColumnDefinition Width=".75*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                        <TextBlock Text="[" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding NombreServicio}" FontWeight="ExtraBold" FontStyle="Italic" FontSize="18"/>
+                                        <TextBlock Text="]" FontWeight="Bold"/>
+                                    </StackPanel>
+                                    <Expander>
+                                        <ListView>
+                                            <Image Source="{Binding FotografiaServicio}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Height="60" Width="60"/>
+                                            <TextBlock Text="Descripcion:" FontWeight="Bold"></TextBlock>
+                                            <Label Grid.Column="1" Grid.Row="1" Content="{Binding Descripcion}"></Label>
+                                        </ListView>
+                                    </Expander>
+                                    
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </WrapPanel>
+            </WrapPanel>
         </TabItem>
     </TabControl>
 </Window>

@@ -18,7 +18,7 @@
             <WrapPanel Orientation="Vertical" Height="163" Width="332">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Height="30" Width="99" Foreground="Black" FontSize="16" FontWeight="Bold" Background="{x:Null}">Usuario:</Label>
-                    <TextBox  x:Name="cmbUsuario" Height="23" Width="220" FontSize="16" ></TextBox>
+                    <TextBox  x:Name="txbUsuario" Height="23" Width="220" FontSize="16" ></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Height="30" Width="100" Foreground="Black" FontSize="16" FontWeight="Bold">Contraseña:</Label>
@@ -29,9 +29,9 @@
                     <PasswordBox x:Name="newpasword" Height="23" Width="220"></PasswordBox>
                 </StackPanel>
                 <WrapPanel Height="34" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="142">
-                    <Button x:Name="btnAceptar" Height="25" Width="69" Background="#FFB8B8B8" Content="Aceptar" FontSize="14" FontWeight="Bold" FontFamily="Segoe WP" />
+                    <Button x:Name="btnAceptar" Height="25" Width="69" Background="#FFB8B8B8" Content="Aceptar" FontSize="14" FontWeight="Bold" FontFamily="Segoe WP" Click="btnAceptar_Click" />
                     <StackPanel>
-                        <Button x:Name="btnCancelar" Height="25" Width="68" Background="#FFB8B8B8" Content="Cancelar" FontSize="14" FontWeight="Bold" FontFamily="Segoe WP" />
+                        <Button x:Name="btnCancelar" Height="25" Width="68" Background="#FFB8B8B8" Content="Cancelar" FontSize="14" FontWeight="Bold" FontFamily="Segoe WP" Click="btnCancelar_Click" />
                     </StackPanel>
                 </WrapPanel>
             </WrapPanel>

@@ -19,11 +19,11 @@
             <WrapPanel Orientation="Vertical" Height="160" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Height="30" Width="100" Foreground="White" FontSize="16" FontWeight="Bold" Content="Usuario:" Background="Black"/>
-                    <ComboBox  x:Name="cmbUsuario" Height="23" Width="220" FontSize="16" />
+                    <ComboBox  x:Name="cmbUsuario" Height="27" Width="220" FontSize="16" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Height="30" Width="100" Foreground="White" FontSize="16" FontWeight="Bold" Content="Contraseña:" Background="#FF0C0B0B"/>
-                    <PasswordBox x:Name="pasword" Height="23" Width="220"/>
+                    <PasswordBox x:Name="pasword" Height="28" Width="220"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
                     <Button Height="35" Width="120" x:Name="btnIniciarAplicacion"  Margin="20" Background="White" Foreground="#FFFDFDFD" Click="btnIniciarAplicacion_Click">
@@ -32,7 +32,7 @@
                             <Image Source="/Imagenes/Entrar.jpg" Width="25"/>
                         </StackPanel>
                     </Button>
-                    <Button Height="35" Width="120" x:Name="btnCancelarAplicacion" Background="White" Foreground="#FFFDFDFD">
+                    <Button Height="35" Width="120" x:Name="btnCancelarAplicacion" Background="White" Foreground="#FFFDFDFD" Click="btnCancelarAplicacion_Click">
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="16" Foreground="#FFC92828" FontWeight="Bold" Content="Cancelar"/>
                             <Image Source="/Imagenes/cancelar.png" Width="25"/>
@@ -47,6 +47,9 @@
                         <Image Source="/Imagenes/AddUsuario.png" Width="25"/>
                     </StackPanel>
                 </Button>
+            </StackPanel>
+            <StackPanel>
+                <MediaElement Source="Musica/3.mp3" x:Name="Musica" LoadedBehavior="Play"></MediaElement>
             </StackPanel>
         </WrapPanel>
     </Grid>

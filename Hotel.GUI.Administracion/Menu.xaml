@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:Hotel.GUI.Administracion"
         mc:Ignorable="d"
         Title="Menu" Height="600" Width="1000">
@@ -14,7 +15,18 @@
             <ImageBrush ImageSource="Imagenes/fondo2.jpg"/>
         </TabControl.Background>
         <TabItem Header="Inicio" Margin="-6,-4,-8,0">
-
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <WrapPanel>
+                    <Image gif:ImageBehavior.AnimatedSource="Imagenes/h2.gif" Height="246" Width="473" />
+                </WrapPanel>
+                <StackPanel Width="200">
+                    <Button x:Name="btnRegresar" Height="49" Margin="0,0,28,0">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Imagenes/regresar.png"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+            </WrapPanel>
         </TabItem>
         <TabItem Header="Registro de Husped" Margin="7,-4,-11,0">
             <Grid>
@@ -25,7 +37,7 @@
                     <StackPanel>
                         <WrapPanel>
                             <TextBlock FontSize="22" FontWeight="Bold">Fecha:</TextBlock>
-                            <DatePicker FontSize="16"></DatePicker>
+                            <DatePicker FontSize="16" x:Name="dtpFecha"></DatePicker>
                         </WrapPanel>
                     </StackPanel>
                     <WrapPanel Orientation="Horizontal">
@@ -38,31 +50,34 @@
                     <StackPanel Height="16"></StackPanel>
                     <WrapPanel Orientation="Horizontal">
                         <TextBlock Width="127" FontWeight="Bold" FontSize="21.333">Habitacion:</TextBlock>
-                        <ComboBox x:Name="txbNombreHabitacion" Width="200" FontSize="21.333" ></ComboBox>
+                        <ComboBox x:Name="cmbNombreHabitacion" Width="200" FontSize="21.333" ></ComboBox>
+                        <WrapPanel Width="35"></WrapPanel>
+                        <TextBlock FontSize="20" FontWeight="Bold">Dias de hospedaje:</TextBlock>
+                        <TextBox x:Name="txbDiasHospedaje" Width="78" FontSize="20"></TextBox>
                     </WrapPanel>
                     <WrapPanel Height="17"></WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <Button x:Name="btnNuevo" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE">
+                        <Button x:Name="btnNuevo" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE" Click="btnNuevo_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/nuevo.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnEditar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="50" Height="45">
+                        <Button x:Name="btnEditar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="50" Height="45" Click="btnEditar_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/editar.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnGuardar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="47">
+                        <Button x:Name="btnGuardar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="47" Click="btnGuardar_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/guardar.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnEliminar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="49">
+                        <Button x:Name="btnEliminar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="49" Click="btnEliminar_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/eliminar.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnCancelar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="54">
+                        <Button x:Name="btnCancelar" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="54" Click="btnCancelar_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/Cancelar.png"/>
                             </Button.Background>
@@ -70,7 +85,7 @@
                     </WrapPanel>
                     <WrapPanel Height="23"></WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <DataGrid x:Name="dtgTipoHabitacion" Width="384" Height="242"></DataGrid>
+                        <DataGrid x:Name="dtgTRegistroHuesped" Width="384" Height="242"></DataGrid>
                     </WrapPanel>
                     <WrapPanel Height="26"></WrapPanel>
                 </WrapPanel>
@@ -85,38 +100,38 @@
                     <StackPanel>
                         <WrapPanel>
                             <TextBlock FontSize="22" FontWeight="Bold" Width="197">Fecha de desalojo:</TextBlock>
-                            <DatePicker FontSize="18"></DatePicker>
+                            <DatePicker x:Name="dtpFechaFinal" FontSize="18"></DatePicker>
                         </WrapPanel>
                     </StackPanel>
                     <WrapPanel Orientation="Horizontal">
                         <TextBlock Width="96" FontWeight="Bold" FontSize="21.333">Nombre:</TextBlock>
-                        <ComboBox x:Name="txbNombreHusped" Width="200" FontSize="21.333" ></ComboBox>
+                        <ComboBox x:Name="cmbNombreHusped" Width="200" FontSize="21.333" ></ComboBox>
                         <WrapPanel Width="23"></WrapPanel>
                     </WrapPanel>
                     <StackPanel Height="16"></StackPanel>
                     <WrapPanel Height="17"></WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <Button x:Name="btnNuevo1" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE">
+                        <Button x:Name="btnNuevo1" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE" Click="btnNuevo1_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/nuevo.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnEditar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="50" Height="45">
+                        <Button x:Name="btnEditar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="50" Height="45" Click="btnEditar1_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/editar.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnGuardar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="47">
+                        <Button x:Name="btnGuardar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="47" Click="btnGuardar1_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/guardar.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnEliminar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="49">
+                        <Button x:Name="btnEliminar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="49" Click="btnEliminar1_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/eliminar.png"/>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="btnCancelar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="54">
+                        <Button x:Name="btnCancelar1" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="54" Click="btnCancelar1_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="Imagenes/Cancelar.png"/>
                             </Button.Background>
@@ -130,12 +145,84 @@
                 </WrapPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Historial" Margin="7,-2,-14,0">
+        <TabItem Header="Historial" Margin="7,-2,-19,0">
             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <DataGrid x:Name="dtgHistorial" Height="295" Width="376"></DataGrid>
+                <ListView x:Name="lsvHistorial" Height="295" Width="376">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="400">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".25*"></ColumnDefinition>
+                                    <ColumnDefinition Width=".75*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock Text="[" FontWeight="Bold"/>
+                                    <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="18" Text="{Binding Nombre}"/>
+                                    <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="18" Text="{Binding Apellido}"/>
+                                    <TextBlock Text="]" FontWeight="Bold"/>
+                                </StackPanel>
+
+                                <Expander Grid.Column="1" Grid.Row="1">
+                                    <ListView>
+                                        <TextBlock Text="Habitacion:" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Habitacion}"></TextBlock>
+                                        <TextBlock Text="Dias de hospedaje:" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding DiasHospedaje}"></TextBlock>
+                                        <TextBlock Text="Fecha:" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding FechaInicial}"></TextBlock>
+                                    </ListView>
+                                </Expander>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </WrapPanel>
         </TabItem>
-        <TabItem Header="Informes" Margin="13,-4,-19,0"></TabItem>
-        <TabItem Header="Grafica" Margin="18,-6,-27,0"></TabItem>
+        <!--<TabItem Header="Informes" Margin="13,-4,-19,0"></TabItem>
+        <TabItem Header="Grafica" Margin="18,-6,-27,0"></TabItem>-->
+        <TabItem Header="Usuario" Margin="18,-6,-26,1">
+            <WrapPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <WrapPanel Orientation="Horizontal">
+                    <TextBlock Width="136" FontWeight="Bold" FontSize="21.333"><Run Text="Nombre"/><Run Text=":"/></TextBlock>
+                    <TextBox x:Name="txbUsuario" Width="200" FontSize="21.333" ></TextBox>
+                </WrapPanel>
+                <StackPanel Height="20"></StackPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <TextBlock Width="136" FontWeight="Bold" FontSize="21.333"><Run Text="Contraseña"/><Run Text=":"/></TextBlock>
+                    <PasswordBox x:Name="txbContraseña" Width="200" FontSize="21.333" Height="37" ></PasswordBox>
+                </WrapPanel>
+                <StackPanel Height="21"></StackPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <TextBlock Width="136" FontWeight="Bold" FontSize="21.333"><Run Text="Con"/><Run Text="firmar"/><Run Text=":"/></TextBlock>
+                    <PasswordBox x:Name="txbContraseñaR" Width="200" FontSize="21.333" Height="37" ></PasswordBox>
+                </WrapPanel>
+                <WrapPanel Height="17"></WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button x:Name="btnNuevo4" Height="45" Width="54" BorderBrush="#FFDA5D5D" Foreground="#FFEEEEEE" Click="btnNuevo4_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="Imagenes/nuevo.png"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button x:Name="btnGuardar4" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="47" Click="btnGuardar4_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="Imagenes/guardar.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnCancelar4" BorderBrush="#FFDA5D5D" Foreground="{x:Null}" Width="54" Click="btnCancelar4_Click" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="Imagenes/Cancelar.png"/>
+                        </Button.Background>
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Height="23"></WrapPanel>
+                <WrapPanel Height="26"></WrapPanel>
+            </WrapPanel>
+        </TabItem>
     </TabControl>
 </Window>

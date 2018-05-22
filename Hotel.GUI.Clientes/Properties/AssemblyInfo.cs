@@ -8,9 +8,9 @@ using System.Windows;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Hotel.GUI.Clientes")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("software para el uso de clientes de un hotel")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("CND")]
 [assembly: AssemblyProduct("Hotel.GUI.Clientes")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

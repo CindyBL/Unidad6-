@@ -15,6 +15,8 @@ using Hotel.BIZ;
 using Hotel.COMMON.Interfaces;
 using Hotel.DAL;
 using Hotel.COMMON.Entidades;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Hotel.GUI.Registros
 {
@@ -39,6 +41,7 @@ namespace Hotel.GUI.Registros
         accion accionRegistro;
         accion accionOtro;
         accion accionContaseña;
+        int x;
 
         public MenuO()
         {
@@ -75,6 +78,7 @@ namespace Hotel.GUI.Registros
             btnEliminar3.IsEnabled = habilitados;
             btnGuardar3.IsEnabled = !habilitados;
             btnCancelar3.IsEnabled = !habilitados;
+            btnCargarFotoServicio.IsEnabled = !habilitados;
         }
 
         private void HabilitarBotonesRegistroHabitacion(bool habilitados)
@@ -102,6 +106,8 @@ namespace Hotel.GUI.Registros
             btnEliminar.IsEnabled = habilitados;
             btnGuardar.IsEnabled = !habilitados;
             btnCancelar.IsEnabled = !habilitados;
+            btnCargarFoto.IsEnabled = !habilitados;
+
         }
 
         private void HabilitarCajasUsuario(bool habilitadas)
@@ -146,12 +152,14 @@ namespace Hotel.GUI.Registros
         {
             txbTipoHabitacion.Clear();
             txbTipoHabitacion.IsEnabled = habilitadas;
+            txbCostoHabitacion.Clear();
+            txbCostoHabitacion.IsEnabled = habilitadas;
         }
 
         private void ActualizarTabla()
         {
-            dtgTipoHabitacion.ItemsSource = null;
-            dtgTipoHabitacion.ItemsSource = manejadorTipoHabitacion.Listar;
+            lsvTipoHabitacion.ItemsSource = null;
+            lsvTipoHabitacion.ItemsSource = manejadorTipoHabitacion.Listar;
             dtgTipoHabitacionCaracteristicas.ItemsSource = null;
             dtgTipoHabitacionCaracteristicas.ItemsSource = manejadorCaracteristicas.Listar;
             dtgTipoHabitacionRegistro.ItemsSource = null;
@@ -170,11 +178,13 @@ namespace Hotel.GUI.Registros
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            TipoHabitaciones pro = dtgTipoHabitacion.SelectedItem as TipoHabitaciones;
+            TipoHabitaciones pro = lsvTipoHabitacion.SelectedItem as TipoHabitaciones;
             if (pro != null)
             {
                 HabilitarCajasTipoHabitacion(true);
                 txbTipoHabitacion.Text = pro.NombtreTipoH;
+                txbCostoHabitacion.Text = pro.CostoHabitacion;
+                imgFoto.Source = ByteToImage(pro.Fotografia);
                 accionTipoHabitacion = accion.Editar;
                 HabilitarBotonesTipoHabitacion(false);
             }
@@ -182,6 +192,25 @@ namespace Hotel.GUI.Registros
             {
                 MessageBox.Show("Seleccione el tipo de habitacion que desea editar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Question);
             }
+        }
+
+        private ImageSource ByteToImage(byte[] fotografia)
+        {
+            if (fotografia==null)
+            {
+                return null;
+            }
+            else
+            {
+                BitmapImage biImg = new BitmapImage();
+                MemoryStream ms = new MemoryStream(fotografia);
+                biImg.BeginInit();
+                biImg.StreamSource=ms;
+                biImg.EndInit();
+                ImageSource imgSrc = biImg as ImageSource;
+                return imgSrc;
+            }
+
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -192,7 +221,7 @@ namespace Hotel.GUI.Registros
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            TipoHabitaciones pro = dtgTipoHabitacion.SelectedItem as TipoHabitaciones;
+            TipoHabitaciones pro = lsvTipoHabitacion.SelectedItem as TipoHabitaciones;
             if (pro != null)
             {
                 if (MessageBox.Show("Realmente deseas eliminar este tipo de habitación?", "Habitaciones", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -213,45 +242,70 @@ namespace Hotel.GUI.Registros
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (txbTipoHabitacion.Text !="") {
-                if (accionTipoHabitacion == accion.Nuevo)
-                {
-                    TipoHabitaciones pro = new TipoHabitaciones()
+            if (txbTipoHabitacion.Text !="" && imgFoto!=null) {
+                if (int.TryParse(txbCostoHabitacion.Text, out x) && !int.TryParse(txbTipoHabitacion.Text, out x)) {
+                    if (accionTipoHabitacion == accion.Nuevo)
                     {
-                        NombtreTipoH = txbTipoHabitacion.Text,
-                    };
-                    if (manejadorTipoHabitacion.Agregar(pro))
-                    {
-                        MessageBox.Show("El tipo de habitación fue agregado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ActualizarTabla();
-                        HabilitarBotonesTipoHabitacion(true);
-                        HabilitarCajasTipoHabitacion(false);
+                        TipoHabitaciones pro = new TipoHabitaciones()
+                        {
+                            NombtreTipoH = txbTipoHabitacion.Text,
+                            CostoHabitacion = txbCostoHabitacion.Text,
+                            Fotografia = ImageToByte(imgFoto.Source),
+                        };
+                        if (manejadorTipoHabitacion.Agregar(pro))
+                        {
+                            MessageBox.Show("El tipo de habitación fue agregado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ActualizarTabla();
+                            HabilitarBotonesTipoHabitacion(true);
+                            HabilitarCajasTipoHabitacion(false);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El tipo de habitación no se pudo agregar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("El tipo de habitación no se pudo agregar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                        TipoHabitaciones pro = lsvTipoHabitacion.SelectedItem as TipoHabitaciones;
+                        pro.NombtreTipoH = txbTipoHabitacion.Text;
+                        pro.CostoHabitacion = txbCostoHabitacion.Text;
+                        if (manejadorTipoHabitacion.Modificar(pro))
+                        {
+                            MessageBox.Show("Tipo de habitación modificado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ActualizarTabla();
+                            HabilitarBotonesTipoHabitacion(true);
+                            HabilitarCajasTipoHabitacion(false);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El tipo de habitacion no se pudo actualizar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
                 else
                 {
-                    TipoHabitaciones pro = dtgTipoHabitacion.SelectedItem as TipoHabitaciones;
-                    pro.NombtreTipoH = txbTipoHabitacion.Text;
-                    if (manejadorTipoHabitacion.Modificar(pro))
-                    {
-                        MessageBox.Show("Tipo de habitación modificado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ActualizarTabla();
-                        HabilitarBotonesTipoHabitacion(true);
-                        HabilitarCajasTipoHabitacion(false);
-                    }
-                    else
-                    {
-                        MessageBox.Show("El tipo de habitacion no se pudo actualizar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("El campo de costo no es de tipo numerico o el campo de tipo de habitacion no admite números", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
                 MessageBox.Show("Aun le faltan campos por rellenar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private byte[] ImageToByte(ImageSource image)
+        {
+            if (image!=null)
+            {
+                MemoryStream memStream = new MemoryStream();
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image as BitmapSource));
+                encoder.Save(memStream);
+                return memStream.ToArray();
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -283,25 +337,29 @@ namespace Hotel.GUI.Registros
         private void btnGuardar1_Click(object sender, RoutedEventArgs e)
         {
             if (cmbTipoHabitacionCarcteristicas.Text!="" && txbNBaños.Text!="" && txbNCamas.Text!="") {
-                if (accionCaracteristicas == accion.Nuevo)
+                if (int.TryParse(txbNBaños.Text, out x) && int.TryParse(txbNCamas.Text, out x))
                 {
-                    CaracteristicasHabitacion pro = new CaracteristicasHabitacion()
-                    {
-                        TipoHabitacion = cmbTipoHabitacionCarcteristicas.Text,
-                        NBaños = txbNBaños.Text,
-                        NCamas = txbNCamas.Text,
-                    };
-                    if (manejadorCaracteristicas.Agregar(pro))
-                    {
-                        MessageBox.Show("Las caracteristicas de habitación fue agregado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ActualizarTabla();
-                        HabilitarBotonesCaracteristicasHabitacion(true);
-                        HabilitarCajasCaracteristicasHabitacion(false);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Las caracteristicas de habitación no se pudo agregar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    if (accionCaracteristicas == accion.Nuevo)
+                {
+                    
+                        CaracteristicasHabitacion pro = new CaracteristicasHabitacion()
+                        {
+                            TipoHabitacion = cmbTipoHabitacionCarcteristicas.Text,
+                            NBaños = txbNBaños.Text,
+                            NCamas = txbNCamas.Text,
+                        };
+                        if (manejadorCaracteristicas.Agregar(pro))
+                        {
+                            MessageBox.Show("Las caracteristicas de habitación fue agregado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ActualizarTabla();
+                            HabilitarBotonesCaracteristicasHabitacion(true);
+                            HabilitarCajasCaracteristicasHabitacion(false);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Las caracteristicas de habitación no se pudo agregar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    
                 }
                 else
                 {
@@ -320,6 +378,11 @@ namespace Hotel.GUI.Registros
                     {
                         MessageBox.Show("La caracteristica de habitacion no se pudo actualizar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+                }
+                }
+                else
+                {
+                    MessageBox.Show("El campo numero de baños o de camas no es de tipo numerico", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -467,6 +530,7 @@ namespace Hotel.GUI.Registros
                 HabilitarCajasOtrosServicios(true);
                txbNombreServicio.Text = pro.NombreServicio;
                 txbDescripcion.Text = pro.Descripcion;
+                imgFotoServicio.Source = ByteToImage(pro.FotografiaServicio);
                 accionOtro = accion.Editar;
                 HabilitarBotonesOtrosServicios(false);
             }
@@ -479,41 +543,49 @@ namespace Hotel.GUI.Registros
         private void btnGuardar3_Click(object sender, RoutedEventArgs e)
         {
             if (txbNombreServicio.Text!="" && txbDescripcion.Text!="") {
-                if (accionOtro == accion.Nuevo)
-                {
-                    OtrosServicios pro = new OtrosServicios()
+                if (!int.TryParse(txbNombreServicio.Text, out x) && !int.TryParse(txbDescripcion.Text, out x)) {
+                    if (accionOtro == accion.Nuevo)
                     {
-                        NombreServicio = txbNombreServicio.Text,
-                        Descripcion = txbDescripcion.Text,
-                    };
-                    if (manejadorOtroServicio.Agregar(pro))
-                    {
-                        MessageBox.Show("El servicio fue agregado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ActualizarTabla();
-                        HabilitarBotonesOtrosServicios(true);
-                        HabilitarCajasOtrosServicios(false);
+                        OtrosServicios pro = new OtrosServicios()
+                        {
+                            NombreServicio = txbNombreServicio.Text,
+                            Descripcion = txbDescripcion.Text,
+                            FotografiaServicio = ImageToByte(imgFotoServicio.Source),
+                        };
+                        if (manejadorOtroServicio.Agregar(pro))
+                        {
+                            MessageBox.Show("El servicio fue agregado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ActualizarTabla();
+                            HabilitarBotonesOtrosServicios(true);
+                            HabilitarCajasOtrosServicios(false);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El servicio no se pudo agregar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("El servicio no se pudo agregar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                        OtrosServicios pro = dtgOtrosServicios.SelectedItem as OtrosServicios;
+                        pro.NombreServicio = txbNombreServicio.Text;
+                        pro.Descripcion = txbDescripcion.Text;
+                        if (manejadorOtroServicio.Modificar(pro))
+                        {
+                            MessageBox.Show("Servicio modificado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ActualizarTabla();
+                            HabilitarBotonesOtrosServicios(true);
+                            HabilitarCajasOtrosServicios(false);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El servicio no se pudo actualizar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
+
                 }
                 else
                 {
-                    OtrosServicios pro = dtgOtrosServicios.SelectedItem as OtrosServicios;
-                    pro.NombreServicio = txbNombreServicio.Text;
-                    pro.Descripcion = txbDescripcion.Text;
-                    if (manejadorOtroServicio.Modificar(pro))
-                    {
-                        MessageBox.Show("Servicio modificado correctamente", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ActualizarTabla();
-                        HabilitarBotonesOtrosServicios(true);
-                        HabilitarCajasOtrosServicios(false);
-                    }
-                    else
-                    {
-                        MessageBox.Show("El servicio no se pudo actualizar", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("El campo del Nombre del servicio o la descripcion no acptan ese tipo de caracteres", "Habitaciones", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -603,5 +675,28 @@ namespace Hotel.GUI.Registros
             ir.Show();
             this.Close();
         }
+
+        private void btnCargarFoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialogo = new OpenFileDialog();
+            dialogo.Title = "Seleccione una foto";
+            dialogo.Filter = "Archivos de imagen|*.jpg;*.png;*.gif";
+            if (dialogo.ShowDialog().Value)
+            {
+                imgFoto.Source = new BitmapImage(new Uri(dialogo.FileName));
+            }
+        }
+
+        private void btnCargarFotoServicio_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialogo = new OpenFileDialog();
+            dialogo.Title = "Seleccione una foto";
+            dialogo.Filter = "Archivos de imagen|*.jpg;*.png;*.gif";
+            if (dialogo.ShowDialog().Value)
+            {
+                imgFotoServicio.Source = new BitmapImage(new Uri(dialogo.FileName));
+            }
+        }
+        
     }
 }

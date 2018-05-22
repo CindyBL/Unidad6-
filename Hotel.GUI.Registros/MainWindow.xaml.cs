@@ -79,5 +79,11 @@ namespace Hotel.GUI.Registros
                 MessageBox.Show(a.ToString());
             }
         }
+
+        private void btnCancelarAplicacion_Click(object sender, RoutedEventArgs e)
+        {
+            Contraseña.Clear();
+
+        }
     }
 }

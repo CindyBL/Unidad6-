@@ -9,5 +9,9 @@ namespace Hotel.COMMON.Entidades
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
         public string CContraseña { get; set; }
+        public override string ToString()
+        {
+            return Usuario;
+        }
     }
 }

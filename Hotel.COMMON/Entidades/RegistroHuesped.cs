@@ -11,5 +11,10 @@ namespace Hotel.COMMON.Entidades
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Habitacion { get; set; }
+        public string DiasHospedaje { get; set; }
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", Nombre,Apellido);
+        }
     }
 }

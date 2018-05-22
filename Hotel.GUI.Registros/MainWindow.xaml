@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.GUI.Registros"
         mc:Ignorable="d"
-        Title="MainWindow" Height="409.659" Width="701.326">
+        Title="Hotel" Height="409.659" Width="701.326">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Imagenes/Hotel2.jpg"/>
@@ -35,7 +35,7 @@
                             <Image Source="/Imagenes/Entrar.jpg" Width="25"></Image>
                         </StackPanel>
                     </Button>
-                    <Button Height="35" Width="120" x:Name="btnCancelarAplicacion" Background="#FFF1EAEA" Foreground="#FFFDFDFD">
+                    <Button Height="35" Width="120" x:Name="btnCancelarAplicacion" Background="#FFF1EAEA" Foreground="#FFFDFDFD" Click="btnCancelarAplicacion_Click">
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="16" Foreground="#FF912222" FontWeight="Bold">Cancelar</Label>
                             <Image Source="/Imagenes/cancelar.png" Width="25"/>

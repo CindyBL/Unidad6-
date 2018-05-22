@@ -8,5 +8,6 @@ namespace Hotel.COMMON.Entidades
     {
         public string NombreServicio { get; set; }
         public string Descripcion { get; set; }
+        public byte[] FotografiaServicio { get; set; }
     }
 }
